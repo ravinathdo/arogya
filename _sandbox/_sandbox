@@ -1,2 +1,2 @@
-                $msgArray = array('msgsuccess' => 'New Patient Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
+x                $msgArray = array('msgsuccess' => 'New Patient Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
 
