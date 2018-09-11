@@ -37,8 +37,8 @@ function setData($sql, $msgArray) {
     } else {
         echo '<p class="bg-danger msg-error">'.$msgArray['msgerror'].'<p>';
     }
-
     mysqli_close($conn);
+    return $last_id;
 }
 
 function getData($sql) {

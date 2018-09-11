@@ -1,10 +1,4 @@
 
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
 include './DB.php';
@@ -125,52 +119,25 @@ include './DB.php';
             </div>
         </div>
         <!-- //header -->
-        <div class="header-bottom ">
-            <div class="container">
-                <nav class="navbar navbar-default">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <div class="logo grid">
-                            <div class="grid__item color-3">
-                                <h1><a class="link link--nukun" href="index.html"><i></i>INFI<span>R</span>MARY</a></h1>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-                        <nav class="menu menu--horatio">
-                            <ul class="nav navbar-nav menu__list">
-                                <li class="menu__item menu__item--current"><a href="index.html" class="menu__link">Home</a></li>
-                                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li> 
-                                <li class="menu__item"><a href="codes.html" class="menu__link">Short Codes</a></li> 
-                                <li class="menu__item"><a href="gallery.html" class="menu__link">Gallery</a></li> 
-                                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </nav>
-            </div>
-        </div>
+        <?php include_once './_header.php';?>
 
         <!-- banner -->
         <div class="banner">
             <?php
             if (isset($_POST['btnLogin'])) {
-                $sql = "SELECT * FROM hms_patient WHERE email = '".$_POST['email']."' AND pword = PASSWORD('".$_POST['pword']."') AND status_code = 'ACTIVE'";
+                $sql = "SELECT * FROM hms_patient WHERE email = '" . $_POST['email'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE'";
                 $data = getData($sql);
-                foreach ($data as $value) {
-                    ?>
-                                <script>
-                                    window.location.replace("home.php");
-                                </script>
-                                <?php
+                if ($data) {
+                    foreach ($data as $value) {
+                        $_SESSION['userbean'] = $value;
+                        ?>
+                        <script>
+                            window.location.replace("home.php");
+                        </script> 
+                    <?php
+                    }
+                }else{
+                    ?> <p class="bg-danger msg-error">Invalid username or password</p> <?php
                 }
             }
 
@@ -191,7 +158,7 @@ VALUES ('" . $_POST['first_name'] . "',
         '" . $_POST['dob'] . "',
         '" . $_POST['email'] . "',
         PASSWORD('" . $_POST['pword'] . "'));";
-                $msgArray = array('msgsuccess'=>'New Patient Created Successfuly','msgerror'=>'Invalid or duplicate entry input');
+                $msgArray = array('msgsuccess' => 'New Patient Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
                 setData($sql, $msgArray);
             }
             ?>
