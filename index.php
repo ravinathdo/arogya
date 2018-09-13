@@ -119,7 +119,7 @@ include './DB.php';
             </div>
         </div>
         <!-- //header -->
-        <?php include_once './_header.php';?>
+     <?php include './_header_pre_login.php';?>
 
         <!-- banner -->
         <div class="banner">
