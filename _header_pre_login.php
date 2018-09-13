@@ -11,7 +11,7 @@
                         </button>
                         <div class="logo grid">
                             <div class="grid__item color-3">
-                                <h1><a class="link link--nukun" href="index.html"><i></i>INFI<span>R</span>MARY</a></h1>
+                                <h1><a class="link link--nukun" href="index.php"><i></i>AR<span>O</span>GYA</a></h1>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,6 @@
                                 <li class="menu__item"><a href="doctor-search.php" class="menu__link">Find Doctor</a></li>
                                 <li class="menu__item"><a href="lab-test.php" class="menu__link">Lab Test</a></li>
                                 <li class="menu__item"><a href="about.html" class="menu__link">About</a></li> 
-                                <li class="menu__item"><a href="codes.html" class="menu__link">Short Codes</a></li> 
                                 <li class="menu__item"><a href="gallery.html" class="menu__link">Gallery</a></li> 
                                 <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
                             </ul>

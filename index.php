@@ -61,107 +61,22 @@ include './DB.php';
     </head>
     <body>
         <!-- header -->
-        <div class="header wow zoomIn">
-            <div class="container">
-                <div class="header_left" data-wow-duration="2s" data-wow-delay="0.5s">
-                    <ul>
-                        <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+123 456 7890</li>
-                        <li><a href="mailto:info@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>info@example.com</a></li>
-                    </ul>
-                </div>
-                <div class="header_right">
-                    <div class="login">
-                        <ul>
-                            <li><a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Login</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Signup</a></li>
-                            <li>
-                                <div class="search-bar">
-                                    <div class="search">		
-                                        <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
-                                    </div>
-                                    <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-                                    <div id="small-dialog" class="mfp-hide">
-                                        <div class="search-top">
-                                            <div class="login_pop">
-                                                <form action="#" method="post">
-                                                    <input type="submit" value="">
-                                                    <input type="text" name="Type something..." value="Type something..." onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                                this.value = '';
-                                                            }">
-                                                </form>
-                                            </div>				
-                                        </div>
-                                        <script>
+        <?php include './_top_pre_login.php'; ?>
 
-                                            $(document).ready(function () {
-                                                $('.popup-with-zoom-anim').magnificPopup({
-                                                    type: 'inline',
-                                                    fixedContentPos: false,
-                                                    fixedBgPos: true,
-                                                    overflowY: 'auto',
-                                                    closeBtnInside: true,
-                                                    preloader: false,
-                                                    midClick: true,
-                                                    removalDelay: 300,
-                                                    mainClass: 'my-mfp-zoom-in'
-                                                });
-
-                                            });
-                                        </script>				
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
         <!-- //header -->
-     <?php include './_header_pre_login.php';?>
+        <?php include './_header_pre_login.php'; ?>
 
         <!-- banner -->
         <div class="banner">
-            <?php
-            if (isset($_POST['btnLogin'])) {
-                $sql = "SELECT * FROM hms_patient WHERE email = '" . $_POST['email'] . "' AND pword = PASSWORD('" . $_POST['pword'] . "') AND status_code = 'ACTIVE'";
-                $data = getData($sql);
-                if ($data) {
-                    foreach ($data as $value) {
-                        $_SESSION['userbean'] = $value;
-                        ?>
-                        <script>
-                            window.location.replace("home.php");
-                        </script> 
-                    <?php
-                    }
-                }else{
-                    ?> <p class="bg-danger msg-error">Invalid username or password</p> <?php
-                }
-            }
-
-
-
-            if (isset($_POST['btnRegister'])) {
-
-                $sql = "INSERT INTO `hms_patient`
-            (`first_name`,
-             `last_name`,
-             `telephone`,
-             `dob`,
-             `email`,
-             `pword`)
-VALUES ('" . $_POST['first_name'] . "',
-        '" . $_POST['last_name'] . "',
-        '" . $_POST['telephone'] . "',
-        '" . $_POST['dob'] . "',
-        '" . $_POST['email'] . "',
-        PASSWORD('" . $_POST['pword'] . "'));";
-                $msgArray = array('msgsuccess' => 'New Patient Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
-                setData($sql, $msgArray);
-            }
-            ?>
+            
+            
+            
+            
+            
+               
+                    
+                    
+                    
             <script>
                 // You can also use "$(window).load(function() {"
                 $(function () {
@@ -512,113 +427,17 @@ VALUES ('" . $_POST['first_name'] . "',
             </div>
         </div>
         <!-- //contact -->
-        <!-- login -->
-        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                    </div>
-                    <div class="modal-body modal-spa">
-                        <div class="login-grids">
-
-                            <div class="login-right">
-                                <h3>Sign in with your account</h3>
-                                <form action="index.php" method="post">
-                                    <div class="sign-in">
-                                        <h4>Email :</h4>
-                                        <input type="text" name="email" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Type here';
-                                                }" required="">	
-                                    </div>
-                                    <div class="sign-in">
-                                        <h4>Password :</h4>
-                                        <input type="password" name="pword" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Password';
-                                                }" required="">
-                                        <!--<a href="#">Forgot password?</a>-->
-                                    </div>
-                                    <!--											<div class="single-bottom">
-                                                                                                                                    <input type="checkbox"  id="brand" value="">
-                                                                                                                                    <label for="brand"><span></span>Remember Me.</label>
-                                                                                                                            </div>-->
-                                    <div class="sign-in">
-                                        <input type="submit" name="btnLogin" value="SIGNIN" >
-                                    </div>
-                                </form>
-                            </div>
-
-                            <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //login -->
-        <!-- login -->
-        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                    </div>
-                    <div class="modal-body modal-spa">
-                        <div class="login-grids">
-                            <div class="login-bottom">
-                                <h3>Sign up for free</h3>
-                                <form action="index.php" method="post">
-                                    <div class="sign-up">
-                                        <h4>First Name :</h4>
-                                        <input type="text" name="first_name"  required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Last Name :</h4>
-                                        <input type="text" name="last_name" required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Telephone :</h4>
-                                        <input type="text" name="telephone"  required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Date of Birth :</h4>
-                                        <input type="text" name="dob"  required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Email :</h4>
-                                        <input type="text" name="email" required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Password :</h4>
-                                        <input type="password" name="pword"   required="">
-
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Re-type Password :</h4>
-                                        <input type="password" name="repword"  id="repword" oninput="check(this)"  required="">
-
-                                    </div>
-                                    <div class="sign-up">
-                                        <input type="submit" name="btnRegister" value="REGISTER NOW" >
-                                    </div>
-                                    <script language='javascript' type='text/javascript'>
-                                        function check(input) {
-                                            if (input.value != document.getElementById('pword').value) {
-                                                input.setCustomValidity('Password Must be Matching.');
-                                            } else {
-                                                // input is valid -- reset the error message
-                                                input.setCustomValidity('');
-                                            }
-                                        }
-                                    </script>
-                                </form>
-                            </div>
-                            <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //login -->
+        
+        
+        
+        
+        <!--login-signup-->
+        <?php include_once './_login_signup.php';?>
+        <!--login-signup-->
+        
+        
+        
+        
         <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
     </body>
 </html>
