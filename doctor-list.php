@@ -59,86 +59,56 @@ include './DB.php';
         <!--//end-animate-->
     </head>
     <body>
-      <!-- //header -->
         <?php
         if (isset($_SESSION['userbean'])) {
             include './_header_top.php';
             include './_header.php';
         } else {
-//            echo 'xxx';
             include './_top_pre_login.php';
             include './_header_pre_login.php';
         }
         ?>
 
-
-        <div class="content"  style="min-height: 450px">
+        <div class="content" style="min-height: 450px">
             <div class="container">
-                
-                
-                
-                <?php
-                if (isset($_POST['btnfeedback'])) {
-                    $sql = "INSERT INTO hms_feedback
-            (`feedback`,
-             `created_user`)
-VALUES ('" . $_POST['feedback'] . "',
-        '" . $_SESSION['userbean']['id'] . "');";
-                    $msgArray = array('msgsuccess' => 'Feedback posted successfully', 'msgerror' => 'Invalid or duplicate entry input');
-                    setData($sql, $msgArray);
-                }
-                
-                if(isset($_GET['id'])){
-                    $sql = "DELETE FROM hms_feedback WHERE id = '".$_GET['id']."'";
-                    setDelete($sql);
-                }
-                ?>
                 <div class="row">
-                    <div class="col-md-4">
-                        
-                        <div class="panel panel-danger">
-                            <div class="panel-heading ">Feedback</div>
-                            <div class="panel-body">
-                                <form class="form-horizontal" action="feedback.php" method="post">
-                            <div class="form-group">
-                                <label for="" class="control-label col-xs-4">Feedback</label> 
-                                <div class="col-xs-10">
-                                    <textarea id="" name="feedback" cols="40" rows="5" class="form-control"></textarea>
-                                </div>
-                            </div> 
-                            <div class="form-group row">
-                                <div class="col-xs-offset-4 col-xs-8">
-                                    <button name="btnfeedback" type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                    </div>
-                    <div class="col-md-8">
-                        
-                        
-                        
-                        
-                        
-                        <table id="example" class="display" cellspacing="0" width="100%" >
+                    <div class="col-md-12">
+
+                        <table id="example" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Specilist</th>
+                                    <th>Fee</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
                             <tbody>
+
+
                                 <?php
-                                $sql = "SELECT * FROM hms_feedback WHERE created_user = '".$_SESSION['userbean']['id']."'";
+                                $sql = "SELECT hms_doctor .*,hms_specialist.specialist FROM hms_doctor INNER JOIN hms_specialist
+ON hms_doctor.specialist_id = hms_specialist.id";
                                 $data = getData($sql);
-                                if ($data != null) {
-                                    foreach ($data as $value) {
-                                        ?>
-                                        <tr>
-                                            <td><?= $value['created_date']?></td>
-                                            <td><?= $value['feedback']?></td>
-                                            <td><a href="feedback.php?id=<?= $value['id']?>">remove</a></td>
-                                        </tr>
-                                        <?php
-                                    }
+                                foreach ($data as $value) {
+                                    ?>
+                                    <tr>
+                                        <td><?= $value['first_name']; ?> <?= $value['last_name']; ?></td>
+                                        <td><?= $value['specialist']; ?></td>
+                                        <td><?= $value['doc_fee']; ?></td>
+                                        <td>
+                                            <?php if ($value['specialist'] == 'OPD') { ?>
+                                            <a href="opd-appointment.php?doctor_id=<?= $value['id']; ?>&doctor_name=<?= $value['first_name']; ?>&doc_fee=<?= $value['doc_fee']; ?>" class="btn btn-warning btn-sm">OPD Appointment</a>
+                                            <?php } else {
+                                                ?>
+                                                <a href="new-appointment.php?doctor_id=<?= $value['id']; ?>&doctor_name=<?= $value['first_name']; ?>&doc_fee=<?= $value['doc_fee']; ?>&hospital_fee=1000" class="btn btn-success btn-sm">Clinic Appointment</a>
+                                                <?php }
+                                            ?>
+                                        </td>
+                                    </tr>
+
+
+                                    <?php
                                 }
                                 ?>
                             </tbody>
@@ -146,9 +116,9 @@ VALUES ('" . $_POST['feedback'] . "',
                         <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
                         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
                         <script type="text/javascript">
-                            $(document).ready(function () {
-                                $('#example').DataTable();
-                            });
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
                         </script>
                     </div>
                 </div>

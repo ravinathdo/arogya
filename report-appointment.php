@@ -1,7 +1,6 @@
 <?php
 session_start();
 include './DB.php';
-include './core.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,119 +59,106 @@ include './core.php';
         <!--//end-animate-->
     </head>
     <body>
-            <?php
+        <?php
         if (isset($_SESSION['userbean'])) {
             include './_header_top.php';
             include './_header.php';
         } else {
+//            echo 'xxx';
             include './_top_pre_login.php';
             include './_header_pre_login.php';
         }
         ?>
 
-        <!-- content -->
-        <div class="content">
+        <div class="content" style="min-height: 450px">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-12">
+                        <div style="width: 50%">
+                          
+                            <div class="panel panel-warning">
+                                <div class="panel-heading ">Appointment Report</div>
+                                <div class="panel-body">
+                                    
+                                    <form class="form-horizontal" action="report-appointment.php" method="post">
+                            <div class="form-group">
+                                <label for="text" class="control-label col-xs-4">From Date</label> 
+                                <div class="col-xs-8">
+                                    <input id="text" name="from_date" type="date" class="form-control">
+                           
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="text1" class="control-label col-xs-4">To Date</label> 
+                                <div class="col-xs-8">
+                                    <input id="text1" name="to_date" type="date" class="form-control">
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <div class="col-xs-offset-4 col-xs-8">
+                                    <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
 
-                    </div>
-                    <div class="col-md-8" >
 
                         <?php
-                        $sql = "INSERT INTO `hms_doctor_appointment`
-            (`doctor_id`,
-             `patient_id`,
-             `appointment_date`,
-             `status_code`,
-             `doctor_fee`,
-             `hospital_fee`,
-             `fee`,
-             `created_user`)
-VALUES ('" . $_POST['doctor_id'] . "',
-        '" . $_SESSION['userbean']['id'] . "',
-        '" . $_POST['appointment_date'] . "',
-        'OPEN',
-        '" . $_POST['doctor_fee'] . "',
-        '" . $_POST['hospital_fee'] . "',
-        '" . $_POST['fee'] . "',
-        '" . $_SESSION['userbean']['id'] . "');";
-//                        echo $sql;
-                        $msgArray = array('msgsuccess' => 'New Appointment Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
-                        $last_id = setData($sql, $msgArray);
-
-                        $appointmentDetails = getAppointmentDetails($last_id);
-
-                        foreach ($appointmentDetails as $value) {
+                        if (isset($_POST['btnSubmit'])) {
                             ?>
+                          <a href="#" onclick="PrintElem('printdiv')">print</a>
                             <div id="printdiv">
-                                <table border="0" style="width: 70% ">
+                                <table border="1" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Arogya Hospital,Applointment Placement Slip</th>
+                                            <th colspan="4" style="text-align: center">Appointment Report <br>
+                                                From : <?= $_POST['from_date'] ?>
+                                                To : <?= $_POST['to_date'] ?> 
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Appointment No</th>
+                                            <th>Appointment Date</th>
+                                            <th>Fee</th>
+                                            <th>Request Date Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td><?php echo $value['created_date'] ?></td>
-                                            <td>Appointment No <?= $value['id'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Patient Details</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Patient Name</td>
-                                            <td><?= $value['patient_name'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Phone Number</td>
-                                            <td><?= $value['telephone'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Appointment Date</td>
-                                            <td><?= $value['appointment_date'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doctor Name</td>
-                                            <td><?= $value['doc_name'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doctor Fee</td>
-                                            <td>Rs <?= $value['doctor_fee'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hospital Fee</td>
-                                            <td>Rs <?= $value['hospital_fee'] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amount</td>
-                                            <td>Rs <?= $value['fee'] ?></td>
-                                        </tr>
+                                        <?php
+                                        if (isset($_POST['btnSubmit'])) {
+                                            $sql = "SELECT * FROM hms_doctor_appointment WHERE created_user = '" . $_SESSION['userbean']['id'] . "' AND DATE(appointment_date) >= '" . $_POST['from_date'] . "' AND DATE(appointment_date) <= '" . $_POST['to_date'] . "'";
 
+                                            $data = getData($sql);
+                                            foreach ($data as $value) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $value['id'] ?></td>
+                                                    <td><?= $value['appointment_date'] ?></td>
+                                                    <td><?= $value['fee'] ?></td>
+                                                    <td><?= $value['created_date'] ?></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
-                            </div>
-                            <a href="#" onclick="PrintElem('printdiv')">print</a>
+                            </div>    
                             <?php
                         }
                         ?>
 
 
 
-
-
-
                     </div>
-                    <script type="text/javascript">
+
+  <script type="text/javascript">
                         function PrintElem(elem)
                         {
                             var mywindow = window.open('', 'PRINT', 'height=400,width=600');
@@ -192,17 +178,20 @@ VALUES ('" . $_POST['doctor_id'] . "',
                             return true;
                         }
                     </script>
-                    <div class="col-md-2">
 
-                    </div>
+
+
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
         <!-- //content -->
-        <?php include './_footer.php'; ?>
+        <br>
+        <br>
+        <br>
         <!-- contact -->
-
+        <?php include './_footer.php'; ?>
+        <!-- //contact -->
 
         <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
     </body>

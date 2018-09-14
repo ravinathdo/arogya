@@ -1,3 +1,9 @@
+<?php
+if(isset($_GET['flag'])){
+    $_SESSION['menu_flag'] = $_GET['flag'];
+//    echo $_GET['flag'];
+}
+?>
 <div class="header-bottom ">
             <div class="container">
                 <nav class="navbar navbar-default">
@@ -20,12 +26,14 @@
                     <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                         <nav class="menu menu--horatio">
                             <ul class="nav navbar-nav menu__list">
-                                <li class="menu__item menu__item--current"><a href="home.php" class="menu__link">Home</a></li>
-                                <li class="menu__item"><a href="doctor-search.php" class="menu__link">Find Doctor</a></li>
-                                <li class="menu__item"><a href="lab-test.php" class="menu__link">Lab Test</a></li>
-                                <li class="menu__item"><a href="about.html" class="menu__link">About</a></li> 
-                                <li class="menu__item"><a href="gallery.html" class="menu__link">Gallery</a></li> 
-                                <li class="menu__item"><a href="contact.html" class="menu__link">Contact</a></li>
+                                
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'home'){ echo 'menu__item--current'; } ?> "><a href="home.php?flag=home" class="menu__link">Home</a></li>
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'finddoctor'){ echo 'menu__item--current'; } ?>"><a href="doctor-search.php?flag=finddoctor" class="menu__link">Find Doctor</a></li>
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'labtest'){ echo 'menu__item--current'; } ?>"><a href="lab-test.php?flag=labtest" class="menu__link">Lab Test</a></li>
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'about'){ echo 'menu__item--current'; } ?> "><a href="about.php?flag=about" class="menu__link">About</a></li> 
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'gallery'){ echo 'menu__item--current'; } ?> "><a href="gallery.php?flag=gallery" class="menu__link">Gallery</a></li> 
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'contact'){ echo 'menu__item--current'; } ?>"><a href="contact.php?flag=contact" class="menu__link">Contact</a></li>
+                        
                             </ul>
                         </nav>
                     </div>

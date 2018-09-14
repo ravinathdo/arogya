@@ -71,7 +71,7 @@ include './core.php';
         ?>
 
         <!-- content -->
-        <div class="content">
+        <div class="content"  style="min-height: 450px">
             <div class="container">
                 <div class="row">
                     <div class="col-md-2">
@@ -80,25 +80,21 @@ include './core.php';
                     <div class="col-md-8" >
 
                         <?php
-                        $sql = "INSERT INTO `hms_doctor_appointment`
+                        $sql = "INSERT INTO `hms_opd_appointment`
             (`doctor_id`,
              `patient_id`,
              `appointment_date`,
              `status_code`,
-             `doctor_fee`,
-             `hospital_fee`,
              `fee`,
              `created_user`)
 VALUES ('" . $_POST['doctor_id'] . "',
         '" . $_SESSION['userbean']['id'] . "',
         '" . $_POST['appointment_date'] . "',
         'OPEN',
-        '" . $_POST['doctor_fee'] . "',
-        '" . $_POST['hospital_fee'] . "',
         '" . $_POST['fee'] . "',
         '" . $_SESSION['userbean']['id'] . "');";
 //                        echo $sql;
-                        $msgArray = array('msgsuccess' => 'New Appointment Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
+                        $msgArray = array('msgsuccess' => 'New OPD Appointment Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
                         $last_id = setData($sql, $msgArray);
 
                         $appointmentDetails = getAppointmentDetails($last_id);

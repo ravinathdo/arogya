@@ -1,9 +1,11 @@
-<?php 
+<?php
 session_start();
 
-if(!isset($_SESSION['userbean'])){
+if (!isset($_SESSION['userbean'])) {
     header("Location:index.php");
 }
+
+$_SESSION['menu_flag'] = 'home';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +27,7 @@ if(!isset($_SESSION['userbean'])){
         <script type="text/javascript" src="js/numscroller-1.0.js"></script>
 
         <!-- //js -->
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         <!-- fonts -->
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -35,21 +37,21 @@ if(!isset($_SESSION['userbean'])){
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type="text/javascript">
-jQuery(document).ready(function ($) {
-    $(".scroll").click(function (event) {
-        event.preventDefault();
-        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
-    });
-});
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+                });
+            });
         </script>
         <!-- start-smoth-scrolling -->
 
         <!--start-date-piker-->
         <script src="js/jquery-ui.js"></script>
         <script>
-$(function () {
-    $("#datepicker,#datepicker1").datepicker();
-});
+            $(function () {
+                $("#datepicker,#datepicker1").datepicker();
+            });
         </script>
         <!--/End-date-piker-->
         <script src="js/responsiveslides.min.js"></script>
@@ -57,37 +59,93 @@ $(function () {
         <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
         <script src="js/wow.min.js"></script>
         <script>
-new WOW().init();
+            new WOW().init();
         </script>
         <!--//end-animate-->
     </head>
     <body>
-        <!-- header -->
-        <?php include_once './_header_top.php'; ?>
-       
         <!-- //header -->
-        <?php include_once './_header.php'; ?>
-
+        <?php
+        if (isset($_SESSION['userbean'])) {
+            include './_header_top.php';
+            include './_header.php';
+        } else {
+            include './_top_pre_login.php';
+            include './_header_pre_login.php';
+        }
+        ?>
         <!-- content -->
-        <div class="content">
+        <div class="content" style="min-height: 450px">
             <div class="container">
-
                 <div class="row">
-                    <div class="col-md-4">
-                        
+                    <div class="col-md-2">
                     </div>
                     <div class="col-md-8">
+                        <table border="0" style="width: 100%">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th style="text-align: center"><a href="doctor-search.php?flag=finddoctor">
+                                            <i class="fas fa-user-md fa-5x  tile-icon"></i>
+                                        </a>
+                                    </th>
+                                    <th style="text-align: center"><a href="opd-appointment-list.php">
+                                            <i class="fas fa-user-tie fa-5x  tile-icon"></i>
+                                        </a></th>
+                                    <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
+                                            <i class="far fa-calendar-alt fa-5x  tile-icon"></i>
+                                        </a> </th>
+                                    <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
+                                            <i class="fas fa-vials  fa-5x  tile-icon"></i>
+                                        </a></th>
+                                    <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
+                                            <i class="fas fa-comments  fa-5x  tile-icon"></i>
+                                        </a></th>
+                                    <th style="text-align: center"> <a href="report-appointment.php">
+                                            <i class="fas fa-file-alt fa-5x  tile-icon"></i>
+                                        </a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align: center">
+                                    <td >Search Doctor</td>
+                                    <td>OPD Appointments</td>
+                                    <td>Clinic Appointment</td>
+                                    <td>Lab Test</td>
+                                    <td>Feedback</td>
+                                    <td>Reports</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <img src="images/Capture.PNG"/>
+
+                    </div>
+                    <div class="col-md-2">
                     </div>
                 </div>
+
+
+
 
                 <div class="clearfix"></div>
             </div>
         </div>
+
+
+
         <!-- //content -->
 
-<!-- contact -->
-<?php include './_footer.php';?>
-<!-- //contact -->
+        <!-- contact -->
+        <?php include './_footer.php'; ?>
+        <!-- //contact -->
         <!-- login -->
         <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" >
             <div class="modal-dialog" role="document">
@@ -146,7 +204,8 @@ new WOW().init();
                                     <div class="sign-up">
                                         <h4>Email :</h4>
                                         <input type="text" name="Type here" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Type here';}" required="">	
+                                                    this.value = 'Type here';
+                                                }" required="">	
                                     </div>
                                     <div class="sign-up">
                                         <h4>Password :</h4>

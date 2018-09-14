@@ -60,32 +60,17 @@ include './core.php';
         <!--//end-animate-->
     </head>
     <body>
-        <!-- header -->
-        <div class="header wow zoomIn">
-            <div class="container">
-                <div class="header_left" data-wow-duration="2s" data-wow-delay="0.5s">
-                    <ul>
-                        <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+123 456 7890</li>
-                        <li><a href="mailto:info@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>info@example.com</a></li>
-                    </ul>
-                </div>
-                <div class="header_right">
-                    <div class="login">
-                        <ul>
-                            <li><a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Sample User</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Logout</a></li>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- //header -->
-        <?php include './_header.php'; ?>
-        <!-- content -->
+       <?php
+        if (isset($_SESSION['userbean'])) {
+            include './_header_top.php';
+            include './_header.php';
+        } else {
+            include './_top_pre_login.php';
+            include './_header_pre_login.php';
+        }
+        ?>
 
-        <div class="content">
+        <div class="content"  style="min-height: 450px">
             <div class="container">
                 <h3>My Appointment</h3>
                 <div class="row">
@@ -119,9 +104,6 @@ include './core.php';
                     </div>
                     <div class="col-md-8">
 
-
-
-
                         <?php
                         $patient_id = 0;
                         if (isset($_GET['appoid'])){
@@ -129,6 +111,11 @@ include './core.php';
                         foreach ($appointmentDetails as $value) {
                      
                             ?>
+                        <div class="panel panel-success">
+                                    <div class="panel-heading ">Appointment Details</div>
+                                    <div class="panel-body">
+                                        
+                                  
                             <div id="printdiv">
                                 <table border="0" style="width: 100% ">
                                     <thead>
@@ -193,12 +180,29 @@ include './core.php';
                                     </tbody>
                                 </table>
                             </div>
-                        <?php }}
+                       
+  </div>
+                                </div>
+                        
+ <?php }}else{
+                            ?>
+                        
+                        <div class="panel panel-success">
+                                    <div class="panel-heading ">Appointment Details</div>
+                                    <div class="panel-body">
+                                        
+                                    </div></div>
+                        
+                        
+                        <?php    
+                        }
                         ?>
 
 
                     </div>
                 </div>
+                <br>
+                <br>
                 <div class="clearfix"></div>
             </div>
         </div>

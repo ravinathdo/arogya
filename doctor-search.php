@@ -60,19 +60,30 @@ include './DB.php';
     </head>
     <body>
         <!-- header -->
-               <?php include './_top_pre_login.php'; ?>
 
         <!-- //header -->
-        <?php include './_header.php'; ?>
+        <?php
+        if (isset($_SESSION['userbean'])) {
+            include './_header_top.php';
+            include './_header.php';
+        } else {
+            include './_top_pre_login.php';
+            include './_header_pre_login.php';
+        }
+        ?>
 
 
         <!-- content -->
-        <div class="content">
+        <div class="content"  style="min-height: 450px">
             <div class="container">
 
                 <div class="row">
                     <div class="col-md-4">
-                        <form class="form-horizontal" action="doctor-search.php" method="post">
+                        
+                        <div class="panel panel-primary">
+                            <div class="panel-heading ">Serch Doctor Online</div>
+                            <div class="panel-body">
+                                     <form class="form-horizontal" action="doctor-search.php" method="post">
                             <div class="form-group">
                                 <label for="select" class="control-label col-xs-4">Select</label> 
                                 <div class="col-xs-8">
@@ -97,14 +108,28 @@ include './DB.php';
                                 </div>
                             </div>
                         </form>
+                            </div>
+                        </div>
+                        
+                        
+                   
                     </div>
                     <div class="col-md-8">
 
+                        
+                        
+                       
+                        
+                        
 
                         <?php
                         if (isset($_POST['btnGetSp'])) {
                             ?>
-                            <table id="example" class="display" cellspacing="0" width="100%">
+                        
+                        <div class="panel panel-success">
+                            <div class="panel-heading ">Doctor Details</div>
+                            <div class="panel-body">
+                                    <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Doctor</th>
@@ -120,13 +145,16 @@ include './DB.php';
                                             ?>
                                             <tr>
                                                 <td><?= $row['first_name']; ?>
+                                                    <?php if(isset($_SESSION['userbean'])){ 
+                                                        ?>
                                                     <a href="new-appointment.php?doctor_id=<?= $row['id']; ?>&doctor_name=<?= $row['first_name']; ?> <?= $row['last_name']; ?>&doc_fee=<?= $row['doc_fee']; ?>&hospital_fee=1000" class="btn btn-success">New Appointment</a>
+                                                    <?php }?>
                                                 </td>
                                                 <td><?php
-                                                    $sql2 = "SELECT * FROM hms_doctor_availability WHERE doctor_id  = '" . $row['id'] . "'";
-                                                    $result2 = getData($sql2);
-                                                    if ($result2 != null) {
-                                                        ?>
+                                $sql2 = "SELECT * FROM hms_doctor_availability WHERE doctor_id  = '" . $row['id'] . "'";
+                                $result2 = getData($sql2);
+                                if ($result2 != null) {
+                                                ?>
                                                         <table border="1">
                                                             <thead>
                                                                 <tr>
@@ -158,8 +186,20 @@ include './DB.php';
                                     ?>
                                 </tbody>
                             </table>
-
+                            </div>
+                        </div>
+                        
                             <?php
+                        }else{
+                            ?>
+                         <div class="panel panel-success">
+                            <div class="panel-heading ">Doctor Details</div>
+                            <div class="panel-body">
+                                <img src="images/doctor.png">
+                            </div>
+                        </div>
+                        <?php
+                            
                         }
                         ?>
 
@@ -183,94 +223,16 @@ include './DB.php';
         <!-- contact -->
         <?php include './_footer.php'; ?>
         <!-- //contact -->
-        <!-- login -->
-        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                    </div>
-                    <div class="modal-body modal-spa">
-                        <div class="login-grids">
 
-                            <div class="login-right">
-                                <h3>Sign in with your account</h3>
-                                <form action="#" method="post">
-                                    <div class="sign-in">
-                                        <h4>Email :</h4>
-                                        <input type="text" name="Type here" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Type here';
-                                                }" required="">	
-                                    </div>
-                                    <div class="sign-in">
-                                        <h4>Password :</h4>
-                                        <input type="password" name="Password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Password';
-                                                }" required="">
-                                        <a href="#">Forgot password?</a>
-                                    </div>
-                                    <div class="single-bottom">
-                                        <input type="checkbox"  id="brand" value="">
-                                        <label for="brand"><span></span>Remember Me.</label>
-                                    </div>
-                                    <div class="sign-in">
-                                        <input type="submit" value="SIGNIN" >
-                                    </div>
-                                </form>
-                            </div>
 
-                            <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //login -->
-        <!-- login -->
-        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                    </div>
-                    <div class="modal-body modal-spa">
-                        <div class="login-grids">
-                            <div class="login-bottom">
-                                <h3>Sign up for free</h3>
-                                <form action="#" method="post">
-                                    <div class="sign-up">
-                                        <h4>Email :</h4>
-                                        <input type="text" name="Type here" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Type here';
-                                                }" required="">	
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Password :</h4>
-                                        <input type="password" name="Password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Password';
-                                                }" required="">
 
-                                    </div>
-                                    <div class="sign-up">
-                                        <h4>Re-type Password :</h4>
-                                        <input type="password" name="Password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                    this.value = 'Password';
-                                                }" required="">
+        <!--login-signup-->
+        <?php include_once './_login_signup.php'; ?>
+        <!--login-signup-->
 
-                                    </div>
-                                    <div class="sign-up">
-                                        <input type="submit" value="REGISTER NOW" >
-                                    </div>
 
-                                </form>
-                            </div>
-                            <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //login -->
+
+
         <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
     </body>
 </html>

@@ -30,7 +30,7 @@
 			ducimus qui blanditiis praesentium voluptatum deleniti at
 			que corrupti quos dolores et quas molestias excepturi sint
 			occaecati cupiditate non provident, similique sunt.</p>
-			<p class="copy-right">© 2016 Infirmary. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+			<p class="copy-right">© 2016 Arogya. All rights reserved | Design by <a href="#">Arogya</a></p>
 		</div>
 		<div class="clearfix"></div>
 	</div>

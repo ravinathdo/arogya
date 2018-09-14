@@ -59,7 +59,7 @@ include './DB.php';
         <!--//end-animate-->
     </head>
     <body>
-            <?php
+        <?php
         if (isset($_SESSION['userbean'])) {
             include './_header_top.php';
             include './_header.php';
@@ -72,7 +72,10 @@ include './DB.php';
         <!-- content -->
         <div class="content">
             <div class="container">
-                <div class="row">
+                <div class="panel panel-warning">
+                    <div class="panel-heading ">OPD Appointment Placement</div>
+                    <div class="panel-body">
+                                  <div class="row">
                     <div class="col-md-6">
                         <form class="form-horizontal" action="new-appointment-complete.php" method="post">
                             <div class="form-group">
@@ -87,12 +90,6 @@ include './DB.php';
                                     <input id="text1" name="text1" type="text" readonly="" class="form-control" value="<?php echo $_GET['doc_fee']?>">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="text2" class="control-label col-xs-4">Hospital Fee</label> 
-                                <div class="col-xs-8">
-                                    <input id="text2" name="text2" type="text" readonly="" class="form-control" autofocus="" value="<?php echo $_GET['hospital_fee']?>">
-                                </div>
-                            </div> 
                             <div class="form-group row">
                                 <div class="col-xs-offset-4 col-xs-8">
                                     <!--<button name="submit" type="submit" class="btn btn-primary">Submit</button>-->
@@ -102,20 +99,19 @@ include './DB.php';
                     </div>
                     <div class="col-md-6">
                         
-                        <form class="form-horizontal" action="new-appointment-complete.php" method="post">
+                        <form class="form-horizontal" action="opd-appointment-complete.php" method="post">
                             <input type="hidden" name="doctor_id" value="<?php echo $_GET['doctor_id']?>" />
                             <input type="hidden" name="doctor_fee" value="<?php echo $_GET['doc_fee']?>" />
-                            <input type="hidden" name="hospital_fee" value="<?php echo $_GET['hospital_fee']?>" />
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">Appointment Date</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" name="appointment_date" type="date" class="form-control">
+                                    <input id="text" required="" name="appointment_date" type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="Amount" class="control-label col-xs-4">Amount</label> 
                                 <div class="col-xs-8">
-                                    <input id="Amount" name="fee" type="text" readonly="" class="form-control" value="<?php echo $_GET['doc_fee']+ $_GET['hospital_fee']?>">
+                                    <input id="Amount" name="fee" type="text" readonly="" class="form-control" value="<?php echo $_GET['doc_fee']?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -133,6 +129,11 @@ include './DB.php';
                   
                     </div>
                 </div>
+                    </div>
+                </div>
+                
+                
+      
                 <div class="clearfix"></div>
             </div>
         </div>
