@@ -147,7 +147,7 @@ include './DB.php';
                                                 <td><?= $row['first_name']; ?>
                                                     <?php if(isset($_SESSION['userbean'])){ 
                                                         ?>
-                                                    <a href="new-appointment.php?doctor_id=<?= $row['id']; ?>&doctor_name=<?= $row['first_name']; ?> <?= $row['last_name']; ?>&doc_fee=<?= $row['doc_fee']; ?>&hospital_fee=1000" class="btn btn-success">New Appointment</a>
+                                                    <!--<a href="new-appointment.php?doctor_id=<?= $row['id']; ?>&doctor_name=<?= $row['first_name']; ?> <?= $row['last_name']; ?>&doc_fee=<?= $row['doc_fee']; ?>&hospital_fee=1000" class="btn btn-success">New Appointment</a>-->
                                                     <?php }?>
                                                 </td>
                                                 <td><?php
