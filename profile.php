@@ -107,7 +107,7 @@ WHERE `id` = '" . $_POST['id'] . "';";
 SET 
   `pword` = PASSWORD('" . $_POST['new_password'] . "')
 WHERE `id` = '".$_SESSION['userbean']['id']."' AND pword = PASSWORD('" . $_POST['old_password'] . "');";
-                                    echo $sql;
+//                                    echo $sql;
                                     setUpdate($sql, TRUE);
                                 } else {
                                     echo 'Invalid password';
@@ -130,20 +130,20 @@ WHERE `id` = '".$_SESSION['userbean']['id']."' AND pword = PASSWORD('" . $_POST[
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">First Name</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" name="first_name" type="text" class="form-control" value="<?= $_SESSION['userbean']['first_name'] ?>" >
+                                    <input id="text" name="first_name"  required="" type="text" class="form-control" value="<?= $_SESSION['userbean']['first_name'] ?>" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="text1" class="control-label col-xs-4">Last Name</label> 
                                 <div class="col-xs-8">
-                                    <input id="text1" name="last_name" type="text" class="form-control" value="<?= $_SESSION['userbean']['last_name'] ?>">
+                                    <input id="text1" name="last_name" required=""  type="text" class="form-control" value="<?= $_SESSION['userbean']['last_name'] ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="control-label col-xs-4">User Role</label> 
                                 <div class="col-xs-8">
-                                    <input id="" name="" type="text" class="form-control" readonly="" value="<?= $_SESSION['userbean']['user_role'] ?>">
+                                    <input id="" name="" type="text" required=""  class="form-control" readonly="" value="<?= $_SESSION['userbean']['user_role'] ?>">
                                 </div>
                             </div>
 
@@ -194,19 +194,19 @@ WHERE `id` = '".$_SESSION['userbean']['id']."' AND pword = PASSWORD('" . $_POST[
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">Old Password</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" name="old_password" type="password" class="form-control">
+                                    <input id="text" name="old_password" required=""  type="password" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="text1" class="control-label col-xs-4">New Password</label> 
                                 <div class="col-xs-8">
-                                    <input id="text1" name="new_password" type="password" class="form-control">
+                                    <input id="text1" name="new_password" required=""  type="password" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="text2" class="control-label col-xs-4">Retype Password</label> 
                                 <div class="col-xs-8">
-                                    <input id="text2" name="retype_password" type="password" class="form-control">
+                                    <input id="text2" name="retype_password" required=""  type="password" class="form-control">
                                 </div>
                             </div> 
                             <div class="form-group row">
