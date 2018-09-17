@@ -14,7 +14,7 @@ function getDBConnection() {
     $db = "hmsdb";
 
 
-// Create connection
+// Create co nnection
     $conn = mysqli_connect($servername, $username, $password, $db);
 // Check connection
     if (!$conn) {
