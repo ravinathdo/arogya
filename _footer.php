@@ -2,7 +2,7 @@
 	<div class="container">
 		
 		<div class="col-md-6 contact-right wow fadeIn animated animated" data-wow-delay="0.1s" data-wow-duration="2s">
-			<h3>Contact Us</h3>
+			<h3>Contact Us </h3>
 			<div class="strip"></div>
 			<ul class="con-icons">
 				<li><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+123 456 7890</li>
