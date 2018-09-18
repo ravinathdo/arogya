@@ -64,6 +64,10 @@
                 if ($data) {
                     foreach ($data as $value) {
                         $_SESSION['userbean'] = $value;
+                        
+                           date_default_timezone_set('Asia/Colombo');
+                                $today = date("Y-m-d", time());
+                                $_SESSION['today'] = $today;
                         ?>
                         <script>
                             window.location.replace("home.php");

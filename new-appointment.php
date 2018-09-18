@@ -109,19 +109,19 @@ include './DB.php';
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">Appointment Date</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" name="appointment_date" type="date" class="form-control">
+                                    <input id="text" name="appointment_date"  required="" type="datetime-local" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="Amount" class="control-label col-xs-4">Amount</label> 
                                 <div class="col-xs-8">
-                                    <input id="Amount" name="fee" type="text" readonly="" class="form-control" value="<?php echo $_GET['doc_fee']+ $_GET['hospital_fee']?>">
+                                    <input id="Amount" name="fee" type="number" readonly="" class="form-control" value="<?php echo $_GET['doc_fee']+ $_GET['hospital_fee']?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="text2" class="control-label col-xs-4">Card Number</label> 
                                 <div class="col-xs-8">
-                                    <input id="text2" name="text2" type="text" class="form-control">
+                                    <input id="text2" name="text2" type="text" required=""  class="form-control">
                                 </div>
                             </div> 
                             <div class="form-group row">
