@@ -105,7 +105,7 @@ include './DB.php';
                             <div class="form-group">
                                 <label for="text" class="control-label col-xs-4">Appointment Date</label> 
                                 <div class="col-xs-8">
-                                    <input id="text" required="" name="appointment_date" type="date" class="form-control">
+                                    <input id="text" required="" name="appointment_date" min="<?= $_SESSION['today']?>" type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
