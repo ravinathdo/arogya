@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include './DB.php';
 if (!isset($_SESSION['userbean'])) {
     header("Location:index.php");
 }
@@ -62,6 +62,13 @@ $_SESSION['menu_flag'] = 'home';
             new WOW().init();
         </script>
         <!--//end-animate-->
+
+
+
+        <!--calander-->
+      
+
+
     </head>
     <body>
         <!-- //header -->
@@ -89,7 +96,7 @@ $_SESSION['menu_flag'] = 'home';
                                         </a>
                                     </th>
                                     <th style="text-align: center"><a href="opd-appointment-list.php">
-                                            <i class="fas fa-user-tie fa-5x  tile-icon"></i>
+                                            <i class="fas  fa-calendar-alt fa-5x  tile-icon"></i>
                                         </a></th>
                                     <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
                                             <i class="far fa-calendar-alt fa-5x  tile-icon"></i>
@@ -97,7 +104,7 @@ $_SESSION['menu_flag'] = 'home';
                                     <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
                                             <i class="fas fa-vials  fa-5x  tile-icon"></i>
                                         </a></th>
-                                        <th style="text-align: center"> <a href="feedback.php?flag=feedback">
+                                    <th style="text-align: center"> <a href="feedback.php?flag=feedback">
                                             <i class="fas fa-comments  fa-5x  tile-icon"></i>
                                         </a></th>
                                     <th style="text-align: center"> <a href="report-appointment.php">
@@ -124,8 +131,9 @@ $_SESSION['menu_flag'] = 'home';
                             </tbody>
                         </table>
 
+<br>
+                        <div id='calendar'></div>
 
-                        <img src="images/Capture.PNG"/>
 
                     </div>
                     <div class="col-md-2">
