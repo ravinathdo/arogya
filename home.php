@@ -88,7 +88,7 @@ $_SESSION['menu_flag'] = 'home';
                         right: 'month,basicWeek,basicDay'
                     },
                     defaultDate: '<?= $_SESSION['today'] ?>',
-                    navLinks: true, // can click day/week names to navigate views
+                    navLinks: true, // can      click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     events: [
