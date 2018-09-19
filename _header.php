@@ -32,7 +32,7 @@ if(isset($_GET['flag'])){
                         <li class="menu__item <?php if($_SESSION['menu_flag'] == 'doctors'){ echo 'menu__item--current'; } ?>"><a href="doctor-list.php?flag=doctors" class="menu__link">Doctors</a></li> 
                         <li class="menu__item <?php if($_SESSION['menu_flag'] == 'labtest'){ echo 'menu__item--current'; } ?>"><a href="lab-test.php?flag=labtest" class="menu__link">Lab Test</a></li>
                         <li class="menu__item <?php if($_SESSION['menu_flag'] == 'feedback'){ echo 'menu__item--current'; } ?>"><a href="feedback.php?flag=feedback" class="menu__link">Feedback</a></li> 
-                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'report'){ echo 'menu__item--current'; } ?>"><a href="report-appointment?flag=report" class="menu__link">Report</a></li>
+                        <li class="menu__item <?php if($_SESSION['menu_flag'] == 'report'){ echo 'menu__item--current'; } ?>"><a href="report-appointment.php?flag=report" class="menu__link">Report</a></li>
                     </ul>
                 </nav>
             </div>

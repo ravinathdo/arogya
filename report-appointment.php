@@ -135,6 +135,7 @@ include './DB.php';
                                             $sql = "SELECT * FROM hms_doctor_appointment WHERE created_user = '" . $_SESSION['userbean']['id'] . "' AND DATE(appointment_date) >= '" . $_POST['from_date'] . "' AND DATE(appointment_date) <= '" . $_POST['to_date'] . "'";
 
                                             $data = getData($sql);
+                                            if($data!=null)
                                             foreach ($data as $value) {
                                                 ?>
                                                 <tr>

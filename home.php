@@ -97,7 +97,7 @@ $_SESSION['menu_flag'] = 'home';
                                     <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
                                             <i class="fas fa-vials  fa-5x  tile-icon"></i>
                                         </a></th>
-                                    <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
+                                        <th style="text-align: center"> <a href="feedback.php?flag=feedback">
                                             <i class="fas fa-comments  fa-5x  tile-icon"></i>
                                         </a></th>
                                     <th style="text-align: center"> <a href="report-appointment.php">
