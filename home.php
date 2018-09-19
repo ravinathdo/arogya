@@ -65,7 +65,50 @@ $_SESSION['menu_flag'] = 'home';
 
 
 
-      
+       <!--calander-->
+  <link href='css/fullcalendar.min.css' rel='stylesheet' />
+        <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+        <script src='lib/moment.min.js'></script>
+        <script src='lib/jquery.min.js'></script>
+        <script src='js/fullcalendar.min.js'></script>
+
+        <?php
+        $sql = "SELECT id,appointment_date,status_code FROM hms_doctor_appointment
+ WHERE patient_id = '" . $_SESSION['userbean']['id'] . "' ";
+        $data = getData($sql);
+        ?>
+
+        <script>
+            $(document).ready(function () {
+
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
+                    defaultDate: '<?= $_SESSION['today'] ?>',
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: true,
+                    eventLimit: true, // allow "more" link when too many events
+                    events: [
+<?php
+if ($data != null)
+    foreach ($data as $value) {
+        ?>
+                                {
+                                    id: 999,
+                                    title: '[<?= $value['id']; ?>] <?= $value['status_code']; ?>',
+                                    start: '<?= $value['appointment_date']; ?>'
+                                },<?php } ?>
+                    ]
+                });
+
+            });
+
+        </script>
+        <!--calander-->
+
 
 
     </head>
