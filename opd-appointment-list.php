@@ -88,6 +88,7 @@ include './DB.php';
                                 <?php
                                 $sql = "SELECT * FROM hms_opd_appointment WHERE created_user = '" . $_SESSION['userbean']['id'] . "'";
                                 $data = getData($sql);
+                                if($data!=null)
                                 foreach ($data as $row) {
                                     ?>
                                     <tr>

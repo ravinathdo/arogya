@@ -83,6 +83,11 @@
 
             if (isset($_POST['btnRegister'])) {
 
+                
+                $new_password = $_POST['new_password'];
+                            $retype_password = $_POST['retype_password'];
+                            if (strlen($new_password) >= 6 && ($new_password == $retype_password)) {
+                                
                 $sql = "INSERT INTO `hms_patient`
             (`first_name`,
              `last_name`,
@@ -98,6 +103,12 @@ VALUES ('" . $_POST['first_name'] . "',
         PASSWORD('" . $_POST['pword'] . "'));";
                 $msgArray = array('msgsuccess' => 'New Patient Created Successfuly', 'msgerror' => 'Invalid or duplicate entry input');
                 setData($sql, $msgArray);
+                
+                            }else{
+                               echo '<p class="bg-danger msg-error">Invalid Password <p>';
+                            }
+                            
+                
             }
             ?>
                
