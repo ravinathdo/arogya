@@ -127,9 +127,9 @@ if ($data != null)
         <div class="content" style="min-height: 450px">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <table border="0" style="width: 100%">
                             <thead>
                                 <tr style="text-align: center">
@@ -143,7 +143,7 @@ if ($data != null)
                                     <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
                                             <i class="far fa-calendar-alt fa-5x  tile-icon"></i>
                                         </a> </th>
-                                    <th style="text-align: center"> <a href="my-appointment.php?flag=myappointment">
+                                    <th style="text-align: center"> <a href="lab-test.php?flag=labtest">
                                             <i class="fas fa-vials  fa-5x  tile-icon"></i>
                                         </a></th>
                                     <th style="text-align: center"> <a href="feedback.php?flag=feedback">
@@ -178,7 +178,7 @@ if ($data != null)
 
 
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
                 </div>
 
