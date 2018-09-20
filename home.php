@@ -191,7 +191,7 @@ if ($data != null)
 
 
 
-        <!-- //content -->
+        <!-- //conte nt -->
 
         <!-- contact -->
         <?php include './_footer.php'; ?>
