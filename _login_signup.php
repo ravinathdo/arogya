@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="sign-up">
                                         <h4>Password :</h4>
-                                        <input type="password" name="pword"   required="">
+                                        <input type="password" name="pword" placeholder="min 6 chaacters"  required="">
 
                                     </div>
                                     <div class="sign-up">

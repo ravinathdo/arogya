@@ -84,8 +84,8 @@
             if (isset($_POST['btnRegister'])) {
 
                 
-                $new_password = $_POST['new_password'];
-                            $retype_password = $_POST['retype_password'];
+                $new_password = $_POST['pword'];
+                            $retype_password = $_POST['repword'];
                             if (strlen($new_password) >= 6 && ($new_password == $retype_password)) {
                                 
                 $sql = "INSERT INTO `hms_patient`
